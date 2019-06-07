@@ -61,12 +61,6 @@ public class home extends Fragment {
         });
 
         call_retrofit();
-
-
-
-
-
-
         return view;
     }
 
@@ -92,18 +86,15 @@ public class home extends Fragment {
         Call<FinalModel> call1 = api.getData1();
         Call<FinalModel> call2 = api.getData2();
         Call<FinalModel> call3 = api.getData3();
-        FinalModel f;
-
         call1.enqueue(new Callback<FinalModel>() {
             @Override
             public void onResponse(Call<FinalModel> call, Response<FinalModel> response) {
-                Log.i("kya h response",response.body().toString());
                 FinalModel f = response.body();
                 for(DataModel d : f.getPhotos().getPhoto()){
                     URLs.add(d);
                 }
-                RecyclerAdapter adapter = new RecyclerAdapter(URLs,getContext());
-                recyclerView.setAdapter(adapter);
+               // RecyclerAdapter adapter = new RecyclerAdapter(URLs,getContext());
+                //recyclerView.setAdapter(adapter);
               }
 
             @Override
@@ -135,6 +126,8 @@ public class home extends Fragment {
                 for(DataModel d : f.getPhotos().getPhoto()){
                     URLs.add(d);
                 }
+                RecyclerAdapter adapter = new RecyclerAdapter(URLs,getContext());
+                recyclerView.setAdapter(adapter);
                  }
 
             @Override
